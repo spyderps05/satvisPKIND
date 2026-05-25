@@ -1,0 +1,370 @@
+@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap");
+
+:root {
+    --gimu-title-bar-height: 44px;
+    --gimu-red: #8b0000;
+    --gimu-blue: #002868;
+    --gimu-yellow: #ffd700;
+}
+
+html, body, #cesiumContainer {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    overflow: hidden;
+    font-family: sans-serif;
+    color: #edffff;
+    background-color: black;
+}
+
+body {
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+.gimu-title-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--gimu-title-bar-height);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, var(--gimu-blue) 0%, #001540 45%, var(--gimu-red) 100%);
+    border-bottom: 3px solid var(--gimu-yellow);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.65);
+}
+
+.gimu-title-bar__accent {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 8px;
+    background: repeating-linear-gradient(
+        180deg,
+        var(--gimu-red) 0px,
+        var(--gimu-red) 10px,
+        var(--gimu-blue) 10px,
+        var(--gimu-blue) 20px
+    );
+    border-right: 2px solid var(--gimu-yellow);
+}
+
+.gimu-title-bar__title {
+    font-family: "Black Ops One", "Arial Black", sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gimu-yellow);
+    text-shadow: 2px 2px 0 var(--gimu-red), -1px -1px 0 var(--gimu-blue);
+    margin: 0;
+    padding: 0 8rem 0 1rem;
+    text-align: center;
+}
+
+.gimu-title-bar__credit {
+    position: absolute;
+    right: 12px;
+    font-family: "Black Ops One", "Arial Black", sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gimu-yellow);
+    opacity: 0.95;
+    white-space: nowrap;
+}
+
+#toolbarLeft {
+    position: absolute;
+    top: calc(var(--gimu-title-bar-height) + 5px);
+    left: 2px;
+}
+
+#toolbarRight {
+    position: absolute;
+    top: calc(var(--gimu-title-bar-height) + 5px);
+    right: 2px;
+}
+
+.toolbarSwitches {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    margin: 2px 3px;
+    padding: 4px;
+    background: rgba(20, 24, 30, 0.92);
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    border-radius: 6px;
+    min-width: 200px;
+}
+
+.toolbarTitle {
+    text-align: left;
+    height: auto;
+    line-height: 1.2;
+    margin: 6px 4px 4px;
+    padding-bottom: 3px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gimu-yellow, #ffd700);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.12);
+}
+
+.toolbarTitle:first-child {
+    margin-top: 2px;
+}
+
+.toolbarContent {
+    margin: 4px;
+}
+
+/* Compact toggle row — checkbox / default */
+.toolbarSwitch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 26px;
+    padding: 2px 8px;
+    margin: 0;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    background: rgba(48, 51, 54, 0.65);
+    cursor: pointer;
+    font-size: 0.74rem;
+    line-height: 1.2;
+    color: rgba(237, 255, 255, 0.82);
+    opacity: 1;
+    position: relative;
+    user-select: none;
+}
+
+.toolbarSwitch:hover {
+    background: rgba(56, 60, 64, 0.9);
+    border-color: rgba(255, 215, 0, 0.12);
+}
+
+.toolbarSwitch:has(input:checked) {
+    background: rgba(0, 40, 104, 0.4);
+    border-color: rgba(255, 215, 0, 0.22);
+    color: var(--gimu-yellow, #ffd700);
+}
+
+.toolbarSwitch input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+/* Slim pill toggle track */
+.toolbarSwitch .slider {
+    position: relative;
+    flex-shrink: 0;
+    width: 30px;
+    height: 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.toolbarSwitch .slider::before {
+    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
+    background: rgba(160, 168, 176, 0.95);
+    transition: transform 0.15s ease, background 0.15s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.toolbarSwitch input:checked + .slider {
+    background: rgba(0, 40, 104, 0.85);
+    border-color: rgba(255, 215, 0, 0.5);
+}
+
+.toolbarSwitch input:checked + .slider::before {
+    background: var(--gimu-yellow, #ffd700);
+    transform: translateX(14px);
+}
+
+/* Radio — small ring + gold dot (not a sliding switch) */
+.toolbarSwitch--radio .slider {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+}
+
+.toolbarSwitch--radio .slider::before {
+    left: 50%;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    transform: translate(-50%, -50%) scale(0);
+    background: var(--gimu-yellow, #ffd700);
+    box-shadow: none;
+}
+
+.toolbarSwitch--radio input:checked + .slider {
+    background: transparent;
+    border-color: var(--gimu-yellow, #ffd700);
+}
+
+.toolbarSwitch--radio input:checked + .slider::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Action rows (buttons without toggle) */
+.toolbarSwitch--action {
+    justify-content: center;
+    min-height: 24px;
+    padding: 3px 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.02em;
+    color: rgba(237, 255, 255, 0.88);
+    background: rgba(0, 40, 104, 0.35);
+    border: 1px solid rgba(255, 215, 0, 0.18);
+}
+
+.toolbarSwitch--action:hover {
+    background: rgba(0, 40, 104, 0.55);
+    border-color: rgba(255, 215, 0, 0.35);
+    color: var(--gimu-yellow, #ffd700);
+}
+
+.toolbarSwitch--action input {
+    display: none;
+}
+
+/* Segmented control (e.g. Elevation / Swath) */
+.toolbarSegment {
+    display: flex;
+    gap: 2px;
+    margin: 2px 0 4px;
+    padding: 2px;
+    border-radius: 5px;
+    background: rgba(48, 51, 54, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.toolbarSegment__btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 24px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    cursor: pointer;
+    color: rgba(237, 255, 255, 0.65);
+    border: 1px solid transparent;
+    transition: background 0.12s ease, color 0.12s ease;
+}
+
+.toolbarSegment__btn input {
+    display: none;
+}
+
+.toolbarSegment__btn:hover {
+    color: rgba(237, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.toolbarSegment__btn--active {
+    background: rgba(0, 40, 104, 0.75);
+    border-color: rgba(255, 215, 0, 0.35);
+    color: var(--gimu-yellow, #ffd700);
+    font-weight: 600;
+}
+
+.cesium-toolbar-button {
+    font-size: 22px;
+    color: #ffffff;
+}
+
+.cesium-toolbar-button--active {
+    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.55);
+    background: rgba(0, 40, 104, 0.65) !important;
+}
+
+a.cesium-toolbar-button {
+    align-items: center;
+    justify-content: center;
+    display: inline-flex;
+}
+
+.icon {
+    display: inherit;
+    vertical-align: middle;
+    width: 22px;
+    height: 22px;
+}
+
+.svg-sat {
+    background: url("../images/icons/sat/2.svg") no-repeat;
+    filter: brightness(3.1);
+    transform: rotate(-90deg);
+    margin-bottom: 2px;
+}
+
+.svg-groundstation {
+    background: url("../images/icons/sat/9.svg") no-repeat;
+    filter: brightness(3.1);
+    margin-bottom: 2px;
+    margin-left: 2px;
+}
+
+.cesium-infoBox {
+    width: calc(100% - 10px);
+    max-width: 540px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 7px;
+    border: none;
+    box-sizing: border-box;
+}
+
+.cesium-infoBox-title {
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+
+.cesium-infoBox-container {
+    float: left;
+    position: absolute;
+    top: 4px;
+    left: 30px;
+    height: 22px;
+    margin: 0;
+    padding: 0;
+}
+
+.cesium-infoBox-custom {
+    background: transparent;
+    border: 1px solid transparent;
+    display: inline-block;
+    font-size: 16px;
+    height: 22px;
+    width: 22px;
+    padding: 0px;
+    margin: 0px 3px;
+}

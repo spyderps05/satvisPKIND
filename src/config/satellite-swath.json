@@ -1,0 +1,173 @@
+{
+
+  "_comment": "Swath = full imaging strip width (km). byName overrides byNorad. Edit values then save — dev server reloads automatically.",
+
+  "defaultKm": 200,
+
+  "byNorad": {
+
+    "43530": 60,
+
+    "43529": 40,
+
+    "62725": 130,
+
+    "62726": 130,
+
+    "67746": 30,
+
+    "67748": 30,
+
+    "68835": 8,
+
+    "65055": 500,
+
+    "66054": 20,
+
+    "28649": 27,
+
+    "32783": 9.6,
+
+    "36795": 9.6,
+
+    "41599": 9.6,
+
+    "41948": 9.6,
+
+    "42767": 9.6,
+
+    "43111": 9.6,
+
+    "44804": 16,
+
+    "37387": 740,
+
+    "41877": 740,
+
+    "43719": 30,
+
+    "44233": 240,
+
+    "44857": 240,
+
+    "46905": 240,
+
+    "51656": 240,
+
+    "54361": 1420,
+
+    "65053": 250
+
+  },
+
+  "byName": {
+
+    "PRSS-1": 60,
+
+    "PAKTES 1A": 40,
+
+    "PRSC-EO1": 130,
+
+    "PRSC-EO2": 30,
+
+    "PRSC-EO3": 8,
+
+    "PRSC-E03": 8,
+
+    "PRSC-S1": 20,
+
+    "PRSC-HS1": 20,
+
+    "CARTOSAT-1": 27,
+
+    "CARTOSAT-2A": 9.6,
+
+    "CARTOSAT-2B": 9.6,
+
+    "CARTOSAT-2C": 9.6,
+
+    "CARTOSAT-2D": 9.6,
+
+    "CARTOSAT-2E": 9.6,
+
+    "CARTOSAT-2F": 9.6,
+
+    "CARTOSAT-3": 16,
+
+    "RESOURCESAT-2": 740,
+
+    "RESOURCESAT-2A": 740,
+
+    "RISAT-2B": 240,
+
+    "RISAT-2BR1": 240,
+
+    "RISAT-2BR2": 240,
+
+    "EOS-4": 240,
+
+    "EOS-6 (OCEANSAT-3)": 1420,
+
+    "OCEANSAT-2": 1420,
+
+    "HYSIS": 30,
+
+    "NISAR": 250
+
+  },
+
+  "byPattern": [
+
+    { "match": "PRSC-EO", "swathKm": 130 },
+
+    { "match": "PRSC-E", "swathKm": 8 },
+
+    { "match": "PRSS", "swathKm": 60 },
+
+    { "match": "PAKTES", "swathKm": 40 },
+
+    { "match": "PRSC-S", "swathKm": 20 },
+
+    { "match": "PRSC-HS", "swathKm": 20 },
+
+    { "match": "CARTOSAT-3", "swathKm": 16 },
+
+    { "match": "CARTOSAT", "swathKm": 10 },
+
+    { "match": "RESOURCESAT", "swathKm": 740 },
+
+    { "match": "RISAT", "swathKm": 240 },
+
+    { "match": "EOS-", "swathKm": 240 },
+
+    { "match": "OCEANSAT", "swathKm": 1420 },
+
+    { "match": "HYSIS", "swathKm": 30 },
+
+    { "match": "NISAR", "swathKm": 250 },
+
+    { "match": "SENTINEL-2", "swathKm": 290 },
+
+    { "match": "SENTINEL-3", "swathKm": 740 },
+
+    { "match": "LANDSAT", "swathKm": 185 },
+
+    { "match": "SUOMI NPP", "swathKm": 3000 },
+
+    { "match": "NOAA 20 (JPSS-1)", "swathKm": 3000 },
+
+    { "match": "NOAA 21 (JPSS-2)", "swathKm": 3000 },
+
+    { "match": "AQUA", "swathKm": 2330 },
+
+    { "match": "TERRA", "swathKm": 2330 },
+
+    { "match": "FENGYUN", "swathKm": 2900 },
+
+    { "match": "METOP", "swathKm": 2900 }
+
+  ]
+
+}
+
+
